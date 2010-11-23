@@ -23,24 +23,24 @@ class CashMov
     :transaction_code => 4}
 
   class Importer
-      def read(file_name)
-        csv_records = CSVReader.read(file_name)
-        results = []
-        cm = CashMov.new
-        results << cm
+    def read(file_name)
+      csv_records = CSVReader.read(file_name)
+      results = []
+      cm = CashMov.new
+      results << cm
 
-        csv_records.each do |rec|
-          # CoP removed introducing named constants
+      csv_records.each do |rec|
+        # CoP removed introducing named constants
 
-          cm[:date]         = str8_to_date(rec[CSV_COLUMNS[:date])
-          cm[:payment_type] = rec[CSV_COLUMNS[:date]]
-          cm[:concept]      = rec[CSV_COLUMNS[:date]]
-          cm[:amount]       = rec[CSV_COLUMNS[:date]]
+        cm[:date]         = str8_to_date(rec[CSV_COLUMNS[:date]])
+        cm[:payment_type] = rec[CSV_COLUMNS[:date]]
+        cm[:concept]      = rec[CSV_COLUMNS[:date]]
+        cm[:amount]       = rec[CSV_COLUMNS[:date]]
 
-          # ....
-        end
-        results
+        # ....
+      end
+      results
+    end
   end
-
 end
 

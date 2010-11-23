@@ -1,6 +1,5 @@
 
 
-
 class CashMov
   attr_accessor :date
   attr_accessor :payment_type
@@ -10,6 +9,10 @@ class CashMov
   attr_accessor :sale_point
   attr_accessor :salesman
 
+  # Account Types
+  AT_REFUND = 0
+  AT_DEBIT = 1
+
   class Importer
     def read(file_name)
       csv_records = CSVReader.read(file_name)
@@ -18,14 +21,14 @@ class CashMov
       results << cm
 
       csv_records.each do |rec|
-        # CoP: the position of fields in the file are hardcoded
 
-        cm[:date]         = str8_to_date(rec[0])
-        cm[:payment_type] = rec[1] #CoP
-        cm[:concept]      = rec[2] #CoP
-        cm[:amount]       = rec[3] #CoP
+        # ...
+
+        #CoM removed. Also contains CoA, but we are doing one Connascense per time
+        cm[:account_type] = (cm.amount < 0 ? AT_REFUND : AT_DEBIT)
 
         # ....
+
       end
       results
     end

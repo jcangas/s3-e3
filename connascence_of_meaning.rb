@@ -11,24 +11,24 @@ class CashMov
 
 
   class Importer
-      def read(file_name)
-        csv_records = CSVReader.read(file_name)
-        results = []
-        cm = CashMov.new
-        results << cm
+    def read(file_name)
+      csv_records = CSVReader.read(file_name)
+      results = []
+      cm = CashMov.new
+      results << cm
 
-        csv_records.each do |rec|
+      csv_records.each do |rec|
 
-            # ...
+          # ...
 
-          #CoM for account_types
-          cm[:account_type] = (cm.amount < 0 ? : 0 : 1)
+        #CoM for account_types
+        cm[:account_type] = (cm.amount < 0 ? 0 : 1)
 
-            # ....
+          # ....
 
-        end
-        results
+      end
+      results
+    end
   end
-
 end
 
